@@ -8,6 +8,8 @@
 #define OK 1
 #define ERROR 0
 typedef bool Status;
+using namespace std;
+
 template <class T>
 class StackNode{
     public:
@@ -116,8 +118,11 @@ T Stack<T>:: Pop()
     if(top == nullptr) assert(ERROR);
     T data = top -> data;
     top = top -> Prev;
-    top -> Next = nullptr;
-    delete top -> Next;
+    if(top != nullptr)
+    {
+        top -> Next = nullptr;
+        delete top -> Next;
+    }
     stacksize --;
     if(stacksize == 0)
     {
